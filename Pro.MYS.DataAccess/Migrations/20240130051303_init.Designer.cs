@@ -12,8 +12,8 @@ using Pro.MYS.DataAccess;
 namespace Pro.MYS.DataAccess.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240116061904_init3")]
-    partial class init3
+    [Migration("20240130051303_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,7 +66,7 @@ namespace Pro.MYS.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Personelnfo");
+                    b.ToTable("Hint");
                 });
 #pragma warning restore 612, 618
         }

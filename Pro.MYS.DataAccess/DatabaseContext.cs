@@ -17,7 +17,7 @@ namespace Pro.MYS.DataAccess
         }
 
         #region DbSet
-        public virtual DbSet<Hint> Personelnfo { get; set; }
+        public virtual DbSet<Hint> Hint { get; set; }
         #endregion
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

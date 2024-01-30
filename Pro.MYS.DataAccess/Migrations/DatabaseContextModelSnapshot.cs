@@ -64,7 +64,7 @@ namespace Pro.MYS.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Personelnfo");
+                    b.ToTable("Hint");
                 });
 #pragma warning restore 612, 618
         }
