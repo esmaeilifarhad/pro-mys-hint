@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Pro.MYS.DataAccess;
 using Pro.MYS.Application;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,13 +14,24 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllOrigins",
+        builder =>
+        {
+            builder.AllowAnyHeader()
+                           .AllowAnyOrigin()
+                          .AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
+app.UseCors("AllOrigins");
 
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
-    app.UseSwagger();
+app.UseSwagger();
     app.UseSwaggerUI();
 //}
 
