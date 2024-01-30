@@ -42,7 +42,7 @@ namespace Pro.MYS.DataAccess.Repository
             return await _entities.ToListAsync();
         }
 
-        public async Task<T> GetById(int id)
+        public async Task<T> GetById(long id)
         {
             var res = await _entities.SingleOrDefaultAsync(s => s.Id == id);
             return res;
@@ -117,25 +117,27 @@ namespace Pro.MYS.DataAccess.Repository
 
         }
 
-        public async Task Update(T entity)
+        public async Task<int> Update(T entity)
         {
             try
             {
 
                 if (entity == null)
                 {
+                   
                     throw new ArgumentNullException("entity");
+                   
                 }
 
                 _entities.Attach(entity);
                 //added by esmaeili
-                // context.Entry(entity).State = EntityState.Modified;
-                await context.SaveChangesAsync();
+               context.Entry(entity).State = EntityState.Modified;
+              return  await context.SaveChangesAsync();
 
             }
             catch (Exception ex)
             {
-
+                throw new ArgumentException(ex.ToString());
 
             }
         }

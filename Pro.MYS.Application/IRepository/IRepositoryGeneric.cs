@@ -15,13 +15,13 @@ namespace Pro.MYS.Application.IRepository
         Task<IEnumerable<T>> GetAll();
         Task<IEnumerable<T>> Get(Expression<Func<T, bool>> where = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderby = null, string includes = "", int skip = -1, int take = -1);
         Task<int> CountRecords(Expression<Func<T, bool>> where = null);
-        Task<T> GetById(int id);
+        Task<T> GetById(long id);
         Task<T> FindSingleOrDefault(Expression<Func<T, bool>> where = null);
         Task<T> Insert(T entity);
         T Add(T entity);
         Task<int> SaveAsync();
         Task<IEnumerable<T>> InsertRange(IEnumerable<T> entity);
-        Task Update(T entity);
+        Task<int> Update(T entity);
         Task UpdateRange(IEnumerable<T> entities);
         Task DeleteRange(IEnumerable<T> entities);
         Task Delete(T entity);

@@ -14,6 +14,8 @@ namespace Pro.MYS.Application
         {
             // Add as many of these lines as you need to map your objects
             CreateMap<Domains.Hint, CreateHintDto>().ReverseMap();
+            CreateMap<HintDto,Domains.Hint>().ReverseMap();
+            //CreateMap<List<HintDto>,List<Domains.Hint>>().ReverseMap();
         }
     }
 }

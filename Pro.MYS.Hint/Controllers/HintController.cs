@@ -17,13 +17,54 @@ namespace Pro.MYS.Hint.Controllers
         }
 
 
-        [HttpPost("Create")]
+        [HttpPost("CreateUpdate")]
 
         public async Task<IActionResult> Create([FromBody] CreateHintDto param)
         {
             try
             {
-                var res=await _hintService.CreateHint(param);
+                if (param.Id > 0)
+                {
+                    var res = await _hintService.UpdateHint(param);
+                    return Ok(res);
+                }
+                else
+                {
+                    var res = await _hintService.CreateHint(param);
+                    return Ok(res);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        [HttpPost("Find")]
+
+        public async Task<IActionResult> Find([FromBody] long id)
+        {
+            try
+            {
+                var res = await _hintService.FindHint(id);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        [HttpPost("ListHint")]
+
+        public async Task<IActionResult> ListHint()
+        {
+            try
+            {
+                var res = await _hintService.ListHint();
                 return Ok(res);
             }
             catch (Exception ex)
@@ -35,3 +76,6 @@ namespace Pro.MYS.Hint.Controllers
 
     }
 }
+
+
+
