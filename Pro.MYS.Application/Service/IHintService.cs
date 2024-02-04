@@ -13,6 +13,6 @@ namespace Pro.MYS.Application.Service
         Task<long> UpdateHint(CreateHintDto param);
         Task<HintDto> FindHint(long id);
         Task<List<HintDto>> ListHint();
-
+        Task<PaginationOutDto<HintDto>> ListHintPagination(PaginationParamDto param);
     }
 }

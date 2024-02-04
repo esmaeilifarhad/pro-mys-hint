@@ -73,6 +73,21 @@ namespace Pro.MYS.Hint.Controllers
             }
 
         }
+        [HttpPost("ListHintPagination")]
+
+        public async Task<IActionResult> ListHintPagination(PaginationParamDto param)
+        {
+            try
+            {
+                var res = await _hintService.ListHintPagination(param);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
 
     }
 }

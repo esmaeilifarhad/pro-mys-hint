@@ -24,6 +24,7 @@ namespace Pro.MYS.Application.Service
 
         public async Task<long> CreateHint(CreateHintDto param)
         {
+            //throw new ArgumentException("test");
             var newHint = _mapper.Map<Domains.Hint>(param);
             var res = await _hintRepository.Insert(newHint);
             return res.Id;
@@ -57,5 +58,20 @@ namespace Pro.MYS.Application.Service
 
             return lstHint;
         }
+
+        public async Task<PaginationOutDto<HintDto>> ListHintPagination(PaginationParamDto param)
+        {
+            PaginationOutDto<HintDto> data = new PaginationOutDto<HintDto>();
+            var dataHint = await _hintRepository.ListHintPagination(param);
+
+            data.ListData = _mapper.Map<List<HintDto>>(dataHint.ListData);
+
+            data.CountRecord = dataHint.CountRecord;
+            data.Skip = param.Skip;
+            data.Take=param.Take;   
+            return data;
+        }
+
+       
     }
 }
