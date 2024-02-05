@@ -24,8 +24,8 @@ namespace Pro.MYS.Application.IRepository
         Task<int> Update(T entity);
         Task UpdateRange(IEnumerable<T> entities);
         Task DeleteRange(IEnumerable<T> entities);
-        Task Delete(T entity);
-        Task DeleteById(int id);
+        Task<int> Delete(T entity);
+        Task<int> DeleteById(long id);
         IQueryable<T> queryable();
     }
 }

@@ -27,14 +27,15 @@ namespace Pro.MYS.DataAccess.Repository
             this.context = context;
             _entities = context.Set<T>();
         }
-        public async Task Delete(T entity)
+        public async Task<int> Delete(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
             _entities.Remove(entity);
-            await context.SaveChangesAsync();
+           var res=  await context.SaveChangesAsync();
+            return res;
         }
 
         public async Task<IEnumerable<T>> GetAll()
@@ -187,14 +188,15 @@ namespace Pro.MYS.DataAccess.Repository
             }
         }
 
-        public async Task DeleteById(int id)
+        public async Task<int> DeleteById(long id)
         {
             var entity = await _entities.FindAsync(id);
             if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
-            await Delete(entity);
+          var res=  await Delete(entity);
+            return res;
         }
 
         public async Task<IEnumerable<T>> Get(Expression<Func<T, bool>> where, Func<IQueryable<T>, IOrderedQueryable<T>> orderby, string includes, int skip = -1, int take = -1)

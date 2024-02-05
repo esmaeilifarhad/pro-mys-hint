@@ -72,6 +72,10 @@ namespace Pro.MYS.Application.Service
             return data;
         }
 
-       
+        public async Task<int> DeleteHint(long id)
+        {
+            var countEffect = await _hintRepository.DeleteById(id);
+            return countEffect;
+        }
     }
 }

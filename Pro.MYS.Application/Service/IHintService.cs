@@ -14,5 +14,6 @@ namespace Pro.MYS.Application.Service
         Task<HintDto> FindHint(long id);
         Task<List<HintDto>> ListHint();
         Task<PaginationOutDto<HintDto>> ListHintPagination(PaginationParamDto param);
+        Task<int> DeleteHint(long id);
     }
 }

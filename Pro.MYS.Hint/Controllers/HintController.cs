@@ -57,6 +57,21 @@ namespace Pro.MYS.Hint.Controllers
             }
 
         }
+        [HttpPost("Delete")]
+
+        public async Task<IActionResult> Delete([FromBody] long id)
+        {
+            try
+            {
+                var res = await _hintService.DeleteHint(id);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
 
         [HttpPost("ListHint")]
 
